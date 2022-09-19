@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Image, Text, StyleSheet, Button} from 'react-native';
 
-const ProductCard = ({item, index}) => {
+const ProductCard = ({item, index, addHandler}) => {
   return (
     <View key={index} style={styles.container}>
       <View style={styles.image_container}>
@@ -10,7 +10,7 @@ const ProductCard = ({item, index}) => {
       <View style={styles.info_container}>
         <Text> {item.title} </Text>
         <Text> $ {item.price} </Text>
-        <Button title="Add" />
+        <Button title="Add" onPress={() => addHandler(item)} />
       </View>
     </View>
   );

@@ -1,43 +1,42 @@
 import {useState, useEffect} from 'react';
-import {
-  View,
-  FlatList,
-  StyleSheet,
-  ActivityIndicator,
-  Text,
-  Image,
-  Button,
-} from 'react-native';
+import {View, FlatList, StyleSheet, ActivityIndicator} from 'react-native';
+import {addItem} from '../redux/action/ItemAction';
+import {useDispatch, useSelector} from 'react-redux';
 import React from 'react';
 import ProductCard from '../components/ProductCard';
 
-const MainScreen = () => {
+const MainScreen = ({navigation}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const addHandler = item => {
+    dispatch(addItem(item));
+  };
+  const favourite = useSelector(state => state.AddItemReducer.data);
 
   const renderData = ({item, index}) => {
     return (
-      // <ProductCard item={item} index={index} />
-      <View
-        key={index}
-        style={{
-          flex:1,
-          flexDirection: "row",
-          borderWidth: 1,
-          borderRadius: 10,
-          padding: 5,
-          margin: 10,
-          backgroundColor: '#dcdcdc',
-        }}>
-        <View>
-          <Image style={{height: 100, width: 100}} source={{uri: item.image}} />
-        </View>
-        <View style={{flex: 1, justifyContent: "space-between"}}>
-          <Text> {item.title} </Text>
-          <Text> $ {item.price}  </Text>
-          <Button title='Add' />
-        </View>
-      </View>
+      <ProductCard item={item} index={index} addHandler={addHandler} />
+      // <View
+      //   key={index}
+      //   style={{
+      //     flex:1,
+      //     flexDirection: "row",
+      //     borderWidth: 1,
+      //     borderRadius: 10,
+      //     padding: 5,
+      //     margin: 10,
+      //     backgroundColor: '#dcdcdc',
+      //   }}>
+      //   <View>
+      //     <Image style={{height: 100, width: 100}} source={{uri: item.image}} />
+      //   </View>
+      //   <View style={{flex: 1, justifyContent: "space-between"}}>
+      //     <Text> {item.title} </Text>
+      //     <Text> $ {item.price}  </Text>
+      //     <Button title='Add' />
+      //   </View>
+      // </View>
     );
   };
 
@@ -50,6 +49,10 @@ const MainScreen = () => {
       });
     setLoading(false);
   };
+
+  useEffect(() => {
+    console.log(favourite, 'favourite');
+  }, [favourite]);
 
   useEffect(() => {
     console.log(data, 'data');

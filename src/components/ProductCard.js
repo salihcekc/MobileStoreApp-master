@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Image, Text, StyleSheet, Button} from 'react-native';
+import {View, Image, Text, StyleSheet, Button, Alert} from 'react-native';
 
 const ProductCard = ({item, index, addHandler}) => {
   return (
@@ -8,9 +8,16 @@ const ProductCard = ({item, index, addHandler}) => {
         <Image style={styles.image} source={{uri: item.image}} />
       </View>
       <View style={styles.info_container}>
-        <Text> {item.title} </Text>
-        <Text> $ {item.price} </Text>
-        <Button title="Add" onPress={() => addHandler(item)} />
+        <Text style={styles.title}> {item.title} </Text>
+        <Text style={styles.price}> $ {item.price} </Text>
+        <Button
+          style={styles.button}
+          title="Add"
+          onPress={() => {
+            addHandler(item);
+            Alert.alert('Added');
+          }}
+        />
       </View>
     </View>
   );
@@ -28,10 +35,21 @@ const styles = StyleSheet.create({
     margin: 10,
     backgroundColor: '#dcdcdc',
   },
-  image_container: {},
-  image: {height: 100, width: 100},
-  info_container: {flex: 1, justifyContent: 'space-between'},
-  title: {},
-  price: {},
+  image_container: {
+    margin: 5,
+  },
+  image: {height: 120, width: 120},
+  info_container: {
+    flex: 1,
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontWeight: 'bold',
+    // backgroundColor: "red",
+    padding: 5,
+  },
+  price: {
+    margin: 2,
+  },
   button: {},
 });

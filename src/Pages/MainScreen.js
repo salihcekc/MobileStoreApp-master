@@ -12,32 +12,8 @@ const MainScreen = ({navigation}) => {
   const addHandler = item => {
     dispatch(addItem(item));
   };
-  const favourite = useSelector(state => state.AddItemReducer.data);
-
   const renderData = ({item, index}) => {
-    return (
-      <ProductCard item={item} index={index} addHandler={addHandler} />
-      // <View
-      //   key={index}
-      //   style={{
-      //     flex:1,
-      //     flexDirection: "row",
-      //     borderWidth: 1,
-      //     borderRadius: 10,
-      //     padding: 5,
-      //     margin: 10,
-      //     backgroundColor: '#dcdcdc',
-      //   }}>
-      //   <View>
-      //     <Image style={{height: 100, width: 100}} source={{uri: item.image}} />
-      //   </View>
-      //   <View style={{flex: 1, justifyContent: "space-between"}}>
-      //     <Text> {item.title} </Text>
-      //     <Text> $ {item.price}  </Text>
-      //     <Button title='Add' />
-      //   </View>
-      // </View>
-    );
+    return <ProductCard item={item} index={item.id} addHandler={addHandler} />;
   };
 
   const getData = async () => {
@@ -49,10 +25,6 @@ const MainScreen = ({navigation}) => {
       });
     setLoading(false);
   };
-
-  useEffect(() => {
-    console.log(favourite, 'favourite');
-  }, [favourite]);
 
   useEffect(() => {
     console.log(data, 'data');

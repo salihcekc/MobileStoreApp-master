@@ -19,15 +19,21 @@ export default Input;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     margin: 10,
     padding: 3,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    width: "90%",
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '90%',
     borderWidth: 1,
-    borderColor: "gray",
+    borderColor: 'gray',
   },
-  input: {},
-  icon: {},
+  input: {
+    flex: 9,
+    width: '90%',
+    padding: 5,
+  },
+  icon: {
+    flex: 1,
+  },
 });

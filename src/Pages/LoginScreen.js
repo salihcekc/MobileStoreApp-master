@@ -1,11 +1,20 @@
+import React from 'react';
 import {View, Text, StyleSheet, Image, Dimensions, Alert} from 'react-native';
 import {Formik} from 'formik';
 import Input from '../components/Input';
 import Button from '../components/Button';
 
 const LoginScreen = ({navigation}) => {
-  const handleLogin = () => {
-    navigation.navigate('Main');
+  const handleLogin = values => {
+    if (values.username === '' && values.password === '') {
+      Alert.alert('Fill area!');
+    }
+    else if (values.username === 'a' && values.password === 'a') {
+      navigation.navigate('Tabs');
+    } else {
+      Alert.alert('Wrong username or password');
+    }
+    // console.log(values);
   };
 
   return (
@@ -49,12 +58,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#64b5f6',
   },
   header_container: {
-    // backgroundColor: "red",
+    // backgroundColor: "white",
     margin: 10,
     padding: 5,
     alignItems: 'center',
   },
   header: {
+    // backgroundColor: "blue",
     fontWeight: 'bold',
     fontSize: 24,
   },

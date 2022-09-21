@@ -8,6 +8,13 @@ const AddItemReducer = (state = initialState, action) => {
       return {
         ...state,
         data: [...state.data, action.payload],
+        // data:
+        //   state.data.includes(action.payload) === false
+        //     ? [...state.data, action.payload]
+        //     : [
+        //         ...state.data,
+        //         state.data.splice(state.data.lastIndexOf(action.payload), 1),
+        //       ],
       };
 
     default:

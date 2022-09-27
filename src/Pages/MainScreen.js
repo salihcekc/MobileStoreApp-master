@@ -9,16 +9,24 @@ const MainScreen = ({navigation}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+
   const addHandler = item => {
     dispatch(addItem(item));
   };
-  const renderData = ({item, index}) => {
-    return <ProductCard item={item} index={item.id} addHandler={addHandler} />;
+  const renderData = ({item}) => {
+    return (
+      <ProductCard
+        item={item}
+        // index={item.id}
+        pressHandler={addHandler}
+        title="ADD"
+      />
+    );
   };
 
   const getData = async () => {
     setLoading(true);
-    await fetch('https://fakestoreapi.com/products')
+    await fetch('https://api.escuelajs.co/api/v1/products')
       .then(res => res.json())
       .then(json => {
         setData(json);
@@ -40,7 +48,11 @@ const MainScreen = ({navigation}) => {
         {loading === true ? <ActivityIndicator size="large" /> : null}
       </View>
       <View>
-        <FlatList data={data} renderItem={renderData} />
+        <FlatList
+          data={data}
+          renderItem={renderData}
+          keyExtractor={item => item.id.toString()}
+        />
       </View>
     </View>
   );

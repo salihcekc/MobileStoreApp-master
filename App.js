@@ -27,11 +27,11 @@ const App = () => {
     <NavigationContainer>
       <Provider store={store}>
         <Stack.Navigator>
-          <Stack.Screen
+          {/* <Stack.Screen
             options={{headerShown: false}}
             name="Login"
             component={LoginScreen}
-          />
+          /> */}
           <Stack.Screen
             options={{headerShown: false}}
             name="Tabs"

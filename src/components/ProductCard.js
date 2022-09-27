@@ -1,21 +1,26 @@
 import React from 'react';
 import {View, Image, Text, StyleSheet, Button, Alert} from 'react-native';
 
-const ProductCard = ({item, index, addHandler}) => {
+const ProductCard = ({item, index, pressHandler, title, quantity}) => {
   return (
     <View key={index} style={styles.container}>
       <View style={styles.image_container}>
-        <Image style={styles.image} source={{uri: item.image}} />
+        <Image style={styles.image} source={{uri: item.images[0]}} />
       </View>
       <View style={styles.info_container}>
         <Text style={styles.title}> {item.title} </Text>
         <Text style={styles.price}> $ {item.price} </Text>
+        {quantity ? <Text> {quantity}</Text> : null}
         <Button
           style={styles.button}
-          title="Add"
+          title={title}
           onPress={() => {
-            addHandler(item);
-            Alert.alert('Added');
+            pressHandler(item);
+            if (title === 'ADD') {
+              Alert.alert('Added');
+            } else {
+              Alert.alert('Deleted');
+            }
           }}
         />
       </View>

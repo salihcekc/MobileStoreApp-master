@@ -1,0 +1,47 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/tmp": true,
+        "**/node_modules": false,
+        "**/ios": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/buckconfig": true,
+        "**/Gemfile": true,
+        "**flowconfig": true,
+        "**.eslintrc.js": true,
+        "**/yarn.lock": true,
+        "**/.buckconfig": true,
+        "**/.ruby-version": true,
+        "**/.babelrc": true,
+        "**/babel.config.js": true,
+        "**/.watchmanconfig": true,
+        "**/Gemfile.lock": true,
+        "**/app.json": true,
+        "**/package-lock.json": true,
+        "**/metro.config.js": true,
+        "**/prettierrc": true,
+        "**/azure-pipelines.yml": true,
+        "**/.bundle": true,
+        "**/__tests__": true,
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/tmp/**": true,
+        "**/bower_components/**": true,
+        "**/os/**": true,
+        "**/android/**": true,
+        "**/dist/**": true
+    },
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#140907",
+        "titleBar.activeBackground": "#140907",
+        "titleBar.activeForeground": "#FBFAFC"
+    }
+}

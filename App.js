@@ -5,21 +5,19 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Provider} from 'react-redux';
 import store from './src/redux/store';
 
-import LoginScreen from './src/Pages/LoginScreen';
-import MainScreen from './src/Pages/MainScreen';
-import AddCardScreen from './src/Pages/AddCardScreen';
+import {TabBarInfo} from './src/navigations/TabBarInfo';
+import {NavigationInfo} from './src/navigations/NavigationInfo';
 
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
-function BottomTabs() {
+export const BottomTabs = ({navigation}) => {
   const Tab = createBottomTabNavigator();
   return (
     <Tab.Navigator>
-      <Tab.Screen  name="Main" component={MainScreen} />
-      <Tab.Screen name="Add Card Screen" component={AddCardScreen} />
+      {TabBarInfo.map((item, index) => {
+        return <Tab.Screen key={index} name={item.name} options={item.options} component={item.component} />;
+      })}
     </Tab.Navigator>
   );
-}
+};
 
 const App = () => {
   const Stack = createNativeStackNavigator();
@@ -27,16 +25,9 @@ const App = () => {
     <NavigationContainer>
       <Provider store={store}>
         <Stack.Navigator>
-          {/* <Stack.Screen
-            options={{headerShown: false}}
-            name="Login"
-            component={LoginScreen}
-          /> */}
-          <Stack.Screen
-            options={{headerShown: false}}
-            name="Tabs"
-            component={BottomTabs}
-          />
+          {NavigationInfo.map((item, index) => {
+            return <Stack.Screen key={index} name={item.name} options={item.options} component={item.component} />;
+          })}
         </Stack.Navigator>
       </Provider>
     </NavigationContainer>
